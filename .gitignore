@@ -25,4 +25,3 @@ Cargo.lock
 artifacts/libcsp.a
 artifacts/bindings_libcsp.rs
 artifacts/libsocketcan.a
-thirdparty/*
