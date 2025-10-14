@@ -1,0 +1,6 @@
+[submodule "thirdparty/libcsp"]
+	path = thirdparty/libcsp
+	url = https://github.com/libcsp/libcsp.git
+[submodule "thirdparty/libsocketcan"]
+	path = thirdparty/libsocketcan
+	url = https://github.com/linux-can/libsocketcan.git
