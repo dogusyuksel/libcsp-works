@@ -21,5 +21,8 @@ jobs:
       run: |
         git submodule update --init --recursive
         cd rust-server
+        echo "DEBUG:: BINDINGS CREATING.."
         make create-bindings
+        echo "DEBUG:: BINDINGS CREATED AND SERVER IS BUILDING.."
         make build-server
+        echo "DEBUG:: SERVER BUILT SUCCESSFULLY.."
