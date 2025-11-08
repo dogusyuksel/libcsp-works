@@ -4,3 +4,9 @@
 [submodule "thirdparty/libsocketcan"]
 	path = thirdparty/libsocketcan
 	url = https://github.com/linux-can/libsocketcan.git
+[submodule "thirdparty/FreeRTOS-Kernel"]
+	path = thirdparty/FreeRTOS-Kernel
+	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+[submodule "thirdparty/custom_printf"]
+	path = thirdparty/custom_printf
+	url = https://github.com/mpaland/printf.git

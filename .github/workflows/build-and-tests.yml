@@ -26,3 +26,4 @@ jobs:
         echo "DEBUG:: BINDINGS CREATED AND SERVER IS BUILDING.."
         make build-server
         echo "DEBUG:: SERVER BUILT SUCCESSFULLY.."
+        cd -
