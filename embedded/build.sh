@@ -6,3 +6,10 @@ rm -rf build
 ./waf clean
 ./waf build
 cd -
+
+rm -rf build
+mkdir build
+cd build
+cmake ..
+make
+cd -

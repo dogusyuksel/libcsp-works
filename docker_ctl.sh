@@ -21,11 +21,12 @@ command=""
 
 # It's the : after d that signifies that it takes an option argument.
 
-while getopts bsc: opt; do
+while getopts bsc:n: opt; do
     case $opt in
         b) build_docker=true ;;
         s) is_sudo=true ;;
         c) command=$OPTARG ;;
+        n) preferred_name=$OPTARG ;;
         *) echo 'error in command line parsing' >&2
            exit 1
     esac
@@ -39,12 +40,6 @@ printf 'Option -c: %s\n' "$command"
 
 if [ "$build_docker" = "true" ]; then
     docker build -t $preferred_name .
-fi
-
-docker images | grep $BASENAME
-if [ "$?" -ne 0 ]; then
-    echo "it means there is no built docker, cannot proceed"
-    exit 1
 fi
 
 # here, we probably have the docker, then run it
