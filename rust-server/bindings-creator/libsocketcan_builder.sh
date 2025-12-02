@@ -2,7 +2,7 @@
 
 current_path=$PWD
 
-cd /workspace/thirdparty/libsocketcan
+cd $WORKSPACE_PATH/thirdparty/libsocketcan
 ./autogen.sh
 ./configure
 make
