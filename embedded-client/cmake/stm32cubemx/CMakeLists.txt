@@ -15,7 +15,34 @@ target_compile_definitions(stm32cubemx INTERFACE
     $<$<CONFIG:Debug>:DEBUG>
 )
 
+add_custom_target(debug_env
+    COMMAND echo "dodo"
+)
+
+
+set(LIBCSP_DIR ${THIRDPARTY_PATH}/libcsp)
+set(LIBCSP_LIB ${LIBCSP_DIR}/build/libcsp.a)
+set(LIBCSP_INCLUDE ${LIBCSP_DIR}/include)
+set(LIBCSP_CONF_INCLUDE ${LIBCSP_DIR}/build/include)
+
+# be careful about below settings, should match with other end
+add_custom_target(libcsp_build ALL
+    COMMAND ./waf configure
+        --with-os=freertos 
+        --toolchain=arm-none-eabi- 
+        --with-max-bind-port 32 
+        --enable-promisc 
+        --includes 
+            ${THIRDPARTY_PATH}/FreeRTOS-Kernel,${THIRDPARTY_PATH}/FreeRTOS-Kernel/include,${THIRDPARTY_PATH}/FreeRTOS-Kernel/portable/GCC/ARM_CM3,${WORKSPACE_PATH}/inc
+    COMMAND ./waf build
+    WORKING_DIRECTORY ${LIBCSP_DIR}
+    COMMENT "Building libcsp2 with waf..."
+)
+add_dependencies(stm32cubemx INTERFACE libcsp_build)
+
 target_include_directories(stm32cubemx INTERFACE
+    ${LIBCSP_CONF_INCLUDE}
+    ${LIBCSP_INCLUDE}
     ../../inc
     ../../generated_files
     ${THIRDPARTY_PATH}/STM32F103X_HAL/Inc
@@ -73,6 +100,7 @@ target_link_directories(stm32cubemx INTERFACE
 )
 
 target_link_libraries(stm32cubemx INTERFACE
+    ${LIBCSP_LIB}
 )
 
 # Validate that STM32CubeMX code is compatible with C standard
