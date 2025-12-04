@@ -1,4 +1,4 @@
-IMAGE_NAME := libcsp2-bindings-docker
+IMAGE_NAME := dyshell
 WORKSPACE_PATH := /workspace
 BINDING_PROJECT_PATH := $(WORKSPACE_PATH)/rust-server/bindings-creator
 SERVER_PROJECT_PATH := $(WORKSPACE_PATH)/rust-server/csp-server
