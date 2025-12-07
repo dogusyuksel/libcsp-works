@@ -11,11 +11,11 @@ all: create-bindings
 build-docker:
 	docker build -t $(IMAGE_NAME) .
 
-create-bindings: build-docker
+create-bindings:
 	docker run $(DOCKER_ARGS) -t --entrypoint=/bin/bash $(IMAGE_NAME) -c "cd $(BINDING_PROJECT_PATH) && cargo clean && cargo build"
 
-build-server: build-docker
+build-server:
 	docker run $(DOCKER_ARGS) -t --entrypoint=/bin/bash $(IMAGE_NAME) -c "cd $(SERVER_PROJECT_PATH) && cargo clean && cargo build"
 
-console: build-docker
+console:
 	docker run $(DOCKER_ARGS) -it --entrypoint=/bin/bash $(IMAGE_NAME)

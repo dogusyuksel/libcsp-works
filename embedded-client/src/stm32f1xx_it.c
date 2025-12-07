@@ -7,6 +7,7 @@ extern ADC_HandleTypeDef hadc1;
 extern RTC_HandleTypeDef hrtc;
 extern UART_HandleTypeDef huart3;
 extern TIM_HandleTypeDef htim1;
+extern CAN_HandleTypeDef hcan;
 
 void NMI_Handler(void) {
 
@@ -53,3 +54,11 @@ void EXTI1_IRQHandler(void) { HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1); }
 void TIM1_UP_IRQHandler(void) { HAL_TIM_IRQHandler(&htim1); }
 
 void USART3_IRQHandler(void) { HAL_UART_IRQHandler(&huart3); }
+
+void USB_HP_CAN1_TX_IRQHandler(void) { HAL_CAN_IRQHandler(&hcan); }
+
+void USB_LP_CAN1_RX0_IRQHandler(void) { HAL_CAN_IRQHandler(&hcan); }
+
+void CAN1_RX1_IRQHandler(void) { HAL_CAN_IRQHandler(&hcan); }
+
+void CAN1_SCE_IRQHandler(void) { HAL_CAN_IRQHandler(&hcan); }

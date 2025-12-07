@@ -27,5 +27,5 @@ jobs:
         make build-server
         echo "DEBUG:: SERVER BUILT SUCCESSFULLY.."
         cd ../embedded-client
-        make clean && make all
+        make all
         echo "DEBUG:: CLIENT BUILT SUCCESSFULLY.."

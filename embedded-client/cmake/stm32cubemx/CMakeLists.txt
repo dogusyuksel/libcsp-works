@@ -15,11 +15,6 @@ target_compile_definitions(stm32cubemx INTERFACE
     $<$<CONFIG:Debug>:DEBUG>
 )
 
-add_custom_target(debug_env
-    COMMAND echo "dodo"
-)
-
-
 set(LIBCSP_DIR ${THIRDPARTY_PATH}/libcsp)
 set(LIBCSP_LIB ${LIBCSP_DIR}/build/libcsp.a)
 set(LIBCSP_INCLUDE ${LIBCSP_DIR}/include)
@@ -32,6 +27,7 @@ add_custom_target(libcsp_build ALL
         --toolchain=arm-none-eabi- 
         --with-max-bind-port 32 
         --enable-promisc 
+        --enable-rtable 
         --includes 
             ${THIRDPARTY_PATH}/FreeRTOS-Kernel,${THIRDPARTY_PATH}/FreeRTOS-Kernel/include,${THIRDPARTY_PATH}/FreeRTOS-Kernel/portable/GCC/ARM_CM3,${WORKSPACE_PATH}/inc
     COMMAND ./waf build
@@ -68,6 +64,7 @@ file(GLOB_RECURSE generated_files
 
 target_sources(stm32cubemx INTERFACE
     ${free_rtos_all}
+     ${THIRDPARTY_PATH}/libcsp/contrib/atomics/atomics_freertos_gcc.c
     ${files_under_src}
     ${generated_files}
     ../../startup_stm32f103xb.s

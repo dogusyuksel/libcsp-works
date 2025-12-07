@@ -13,6 +13,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include "csp/csp.h"
 
 void SystemClock_Config(void);
 void uart_log(const char *format, ...);
@@ -42,19 +43,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   portYIELD_FROM_ISR(pdTRUE);
 }
 
-// void canardtask(void *data) {
-//   (void)data;
-//   uavcanInit();
-
-//   while (1) {
-//     vTaskDelay(pdMS_TO_TICKS(500));
-//     sendCanard();
-//     receiveCanard();
-//     spinCanard();
-//     taskYIELD();
-//   }
-// }
-
 int main(void) {
 
   HAL_Init();
@@ -68,10 +56,17 @@ int main(void) {
 
   uart_log("application started!\n");
 
-//   xTaskCreate(generic_task, "generic_task", 512, NULL, configMAX_PRIORITIES - 1,
-//               NULL);
-//   xTaskCreate(canardtask, "canardtask", 1024, NULL, 2, NULL);
-//   vTaskStartScheduler();
+  csp_init();
+  xTaskCreate(task_csp_router, "csp_router", 512, NULL, 2, NULL);
+  xTaskCreate(task_csp_server, "csp_server", 2048, NULL, 2, NULL);
+
+  if (can_add_interface(LOCAL_NODE_ID, CSP_NETMASK) != 0) {
+    uart_log("Failed to add CSP CAN interface\r\n");
+  } else {
+    uart_log("CSP Initialised Succesfully\r\n");
+  }
+
+  vTaskStartScheduler();
 
   while (1) {
   }

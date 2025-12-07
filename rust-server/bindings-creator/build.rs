@@ -41,6 +41,7 @@ fn build_libcsp_bindings(out_path: PathBuf) -> Result<(), Box<dyn std::error::Er
         .arg("linux")
         .arg("--enable-promisc")
         .arg("--enable-if-zmqhub")
+        .arg("--enable-rtable")
         .status()
         .expect("Failed to execute waf configure");
 
