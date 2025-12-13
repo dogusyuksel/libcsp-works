@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/libcsp/libcsp/master/doc/logo.png" width="180" />
-</p>
-
 <h1 align="center">🚀 libcsp-works</h1>
 
 <p align="center">
