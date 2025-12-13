@@ -31,14 +31,17 @@ libcsp-works is a workspace and experimental playground for working with the Cub
 
 ## 📂 Project Structure
 
+```
 libcsp-works/
 ├── .github/
 │   └── workflows/
 ├── rust-server/
+├── embedded-client/
 ├── thirdparty/
 ├── .gitmodules
 ├── Makefile
 └── README.md
+```
 
 ---
 
@@ -61,16 +64,22 @@ make console
 
 ## 🦀 Rust Usage
 
+```
 cd rust-server
-cargo run
+make build-docker
+make create-bindings
+make build-server
+```
 
 ---
 
-## 🐍 Python Usage
+## 🐍 Embedded Usage
 
-import libcsp
-libcsp.init()
-libcsp.route_start()
+```
+cd embedded-client
+make build-docker
+make all
+```
 
 ---
 
